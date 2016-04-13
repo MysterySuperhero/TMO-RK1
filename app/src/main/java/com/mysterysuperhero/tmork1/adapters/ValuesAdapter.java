@@ -67,6 +67,14 @@ public class ValuesAdapter extends RecyclerView.Adapter<ValuesAdapter.ValueViewH
         return values;
     }
 
+    public void setValues(ArrayList<Value> values) {
+        this.values = values;
+    }
+
+    public void setValueState(int id, boolean state) {
+        values.get(id).setState(state);
+    }
+
     public class ValueViewHolder extends RecyclerView.ViewHolder {
 
         TextView valueTextView;

@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.fragmentManager = getFragmentManager();
 
-//        fab.hide();
-
         valuesFragment = new ValuesFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragmentContainer, valuesFragment);

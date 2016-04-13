@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:inputType="number"
             android:hint="@string/n"/>
 
         <EditText
@@ -25,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:inputType="number"
             android:hint="@string/k"/>
 
 
@@ -33,6 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:inputType="number"
             android:hint="@string/alpha"/>
 
         <EditText
@@ -40,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:inputType="number"
             android:hint="@string/lambda"/>
 
         <EditText
@@ -47,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
+            android:inputType="number"
             android:hint="@string/mu"/>
 
         <Button

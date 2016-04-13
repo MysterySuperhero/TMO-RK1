@@ -5,20 +5,19 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.mysterysuperhero.tmork1.MainActivity;
 import com.mysterysuperhero.tmork1.R;
 import com.mysterysuperhero.tmork1.adapters.ValuesAdapter;
+import com.mysterysuperhero.tmork1.utils.NoValuesChosen;
 import com.mysterysuperhero.tmork1.utils.Value;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -29,6 +28,8 @@ import java.util.ArrayList;
 public class ValuesFragment extends Fragment {
 
     private RecyclerView valuesView;
+
+    private ValuesAdapter adapter;
 
     private ArrayList<Value> data;
 
@@ -57,7 +58,7 @@ public class ValuesFragment extends Fragment {
         assert valuesView != null;
         valuesView.setLayoutManager(layoutManager);
 
-        final ValuesAdapter adapter = new ValuesAdapter(getActivity());
+        adapter = new ValuesAdapter(getActivity());
 
         //Apply this adapter to the RecyclerView
         valuesView.setAdapter(adapter);
@@ -68,9 +69,50 @@ public class ValuesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 data = adapter.getValues();
+                boolean flag = false;
+                for (Value d : data) {
+                    if (d.getState()) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    try {
+                        throw new NoValuesChosen("Выберите хотя бы одно значение!");
+                    } catch (NoValuesChosen noValuesChosen) {
+                        noValuesChosen.printStackTrace();
+                        Toast.makeText(getActivity(), noValuesChosen.getMessage(), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
                 ((MainActivity) getActivity()).switchFragmetns("InputParams");
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (data != null)
+            adapter.setValues(data);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("data", data);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            // Restore last state for checked position.
+            data = (ArrayList<Value>) savedInstanceState.getSerializable("data");
+            for (Value d : data) {
+                adapter.setValueState(d.getId(), d.getState());
+            }
+        }
     }
 
     public ArrayList<Value> getData() {

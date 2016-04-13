@@ -1,12 +1,13 @@
 package com.mysterysuperhero.tmork1.utils;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 /**
  * Created by dmitri on 13.04.16.
  */
 
-public class Value {
+public class Value implements Serializable {
     String value;
     boolean state;
     int id;
