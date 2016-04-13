@@ -22,6 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -30,6 +31,8 @@ import java.util.HashSet;
 public class InputParamsFragment extends Fragment {
 
     private HashSet<String> reqs;
+    private ArrayList<Value> values;
+    private HashMap<String, Double> params;
 
     private EditText nEditTextView;
     private EditText kEditTextView;
@@ -92,6 +95,10 @@ public class InputParamsFragment extends Fragment {
                     return;
                 }
 
+                params = new HashMap<>();
+                for (EditText edit : visibleEdits) {
+                    params.put(edit.getTag().toString(), Double.valueOf(edit.getText().toString()));
+                }
 
                 ((MainActivity) getActivity()).switchFragmetns("Results");
             }
@@ -143,8 +150,17 @@ public class InputParamsFragment extends Fragment {
         reqs.clear();
     }
 
+    public HashMap<String, Double> getParams() {
+        return this.params;
+    }
+
+    public ArrayList<Value> getValues() {
+        return this.values;
+    }
+
     @Subscribe
     public void onValuesEvent(ValuesEvent valuesEvent) {
-        reqs = valuesEvent.requirements;
+        this.values = valuesEvent.values;
+        this.reqs = valuesEvent.requirements;
     }
 }

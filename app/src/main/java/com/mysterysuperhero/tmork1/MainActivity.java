@@ -13,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.mysterysuperhero.tmork1.fragments.InputParamsFragment;
+import com.mysterysuperhero.tmork1.fragments.ResultsFragment;
 import com.mysterysuperhero.tmork1.fragments.ValuesFragment;
+import com.mysterysuperhero.tmork1.utils.InputEvent;
 import com.mysterysuperhero.tmork1.utils.ValuesEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentTransaction transaction;
     Fragment valuesFragment;
     Fragment inputParamsFragment;
+    Fragment resultsFragment;
 
 
     @Override
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case "InputParams":
-                if (inputParamsFragment== null)
+                if (inputParamsFragment == null)
                     inputParamsFragment = new InputParamsFragment();
                 transaction.replace(R.id.fragmentContainer, inputParamsFragment);
                 transaction.addToBackStack(null);
@@ -92,8 +95,15 @@ public class MainActivity extends AppCompatActivity {
                 EventBus.getDefault().post(new ValuesEvent(((ValuesFragment) valuesFragment).getData()));
                 break;
             case "Results":
-//                transaction.replace(R.id.fragmentContainer, myFriendsFragment);
-//                transaction.addToBackStack(null);
+                if (resultsFragment == null)
+                    resultsFragment = new ResultsFragment();
+                transaction.replace(R.id.fragmentContainer, resultsFragment);
+                transaction.addToBackStack(null);
+                EventBus.getDefault().register(resultsFragment);
+                EventBus.getDefault().post(new InputEvent(
+                        ((InputParamsFragment) inputParamsFragment).getValues(),
+                        ((InputParamsFragment) inputParamsFragment).getParams()
+                ));
                 break;
             default:
                 break;

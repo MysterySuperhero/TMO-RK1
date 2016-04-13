@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:inputType="number"
+            android:tag="n"
             android:hint="@string/n"/>
 
         <EditText
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:inputType="number"
+            android:tag="k"
             android:hint="@string/k"/>
 
 
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:inputType="number"
+            android:tag="alpha"
             android:hint="@string/alpha"/>
 
         <EditText
@@ -44,6 +47,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:inputType="number"
+            android:tag="lambda"
             android:hint="@string/lambda"/>
 
         <EditText
@@ -52,6 +56,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:inputType="number"
+            android:tag="mu"
             android:hint="@string/mu"/>
 
         <Button
