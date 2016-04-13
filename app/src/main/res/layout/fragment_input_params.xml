@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:tag="alpha"
             android:hint="@string/alpha"/>
 
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:tag="lambda"
             android:hint="@string/lambda"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:tag="mu"
             android:hint="@string/mu"/>
 

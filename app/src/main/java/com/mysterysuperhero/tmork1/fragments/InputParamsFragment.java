@@ -74,7 +74,7 @@ public class InputParamsFragment extends Fragment {
 
         nEditTextView = (EditText) getView().findViewById(R.id.n_param_edit);
         kEditTextView = (EditText) getView().findViewById(R.id.k_param_edit);
-        alphaEditTextView= (EditText) getView().findViewById(R.id.alpha_param_edit);
+        alphaEditTextView = (EditText) getView().findViewById(R.id.alpha_param_edit);
         lambdaEditTextView = (EditText) getView().findViewById(R.id.lambda_param_edit);
         muEditTextView = (EditText) getView().findViewById(R.id.mu_param_edit);
 
@@ -83,12 +83,17 @@ public class InputParamsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                try {
-                    for (EditText edit : visibleEdits) {
-                        if (edit.getText().toString().isEmpty()) {
-                            throw new NotAllFieldsAreFilled("Введите все параметры!");
-                        }
+                boolean flag = false;
+                for (EditText edit : visibleEdits) {
+                    if (!edit.getText().toString().isEmpty()) {
+                        flag = true;
+                    } else {
+                        flag = false;
                     }
+                }
+                try {
+                    if (!flag)
+                        throw new NotAllFieldsAreFilled("Введите все параметры!");
                 } catch (NotAllFieldsAreFilled notAllFieldsAreFilled) {
                     Toast.makeText(getActivity(), notAllFieldsAreFilled.getMessage(), Toast.LENGTH_LONG).show();
                     notAllFieldsAreFilled.printStackTrace();
@@ -106,8 +111,8 @@ public class InputParamsFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
 
         visibleEdits.clear();
 
@@ -141,13 +146,13 @@ public class InputParamsFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        nEditTextView.setVisibility(View.GONE);
-        kEditTextView.setVisibility(View.GONE);
-        alphaEditTextView.setVisibility(View.GONE);
-        lambdaEditTextView.setVisibility(View.GONE);
-        muEditTextView.setVisibility(View.GONE);
+//        nEditTextView.setVisibility(View.GONE);
+//        kEditTextView.setVisibility(View.GONE);
+//        alphaEditTextView.setVisibility(View.GONE);
+//        lambdaEditTextView.setVisibility(View.GONE);
+//        muEditTextView.setVisibility(View.GONE);
 
-        reqs.clear();
+//        reqs.clear();
     }
 
     public HashMap<String, Double> getParams() {

@@ -35,37 +35,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         this.fragmentManager = getFragmentManager();
 
         valuesFragment = new ValuesFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragmentContainer, valuesFragment);
-        transaction.addToBackStack(null);
         transaction.commit();
         inputParamsFragment = new InputParamsFragment();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -74,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //handle the click on the back arrow click
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -97,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             case "Results":
                 if (resultsFragment == null)
                     resultsFragment = new ResultsFragment();
+                getFragmentManager().popBackStack();
                 transaction.replace(R.id.fragmentContainer, resultsFragment);
                 transaction.addToBackStack(null);
                 EventBus.getDefault().register(resultsFragment);

@@ -59,18 +59,18 @@ public class Value implements Serializable {
     public static final String K = "k";
 
     // VALUES
-    public static String P = "P(k, α)";
-    public static String R = "R(n, α)";
-    public static String P_K_CHANNELS_OCCUP = "Вероятность занятия k каналов";
-    public static String AVERAGE_COUNT_OCCUP_CHANNELS = "Среднее число занятых каналов";
-    public static String P_REQUEST_SERVICE = "Вероятность обслуживания заявки";
-    public static String P_OCCUP_CHANNEL = "Вероятность занятости канала";
-    public static String P_FULL_OCCUP_SYS = "Вероятность полной загрузки СМО";
-    public static String AVER_OCCUP_CHANNEL_TIME = "Среднее время занятости канала";
-    public static String AVER_PLAIN_CHANNEL_TIME = "Среднее время простоя канала";
-    public static String AVER_TIME_FULL_OCCUP_SYS = "Среднее время полной загрузки системы";
-    public static String AVER_NOT_FULL_OCCUP_SYS = "Среднее время неполной загрузки системы";
-    public static String AVER_PLAIN_TIME_SYS = "Среднее время простоя СМО";
-    public static String AVER_TIME_STAY_REQUEST = "Среднее время пребывания заявки в СМО";
+    public static final String P = "P(k, α)";
+    public static final String R = "R(n, α)";
+    public static final String P_K_CHANNELS_OCCUP = "Вероятность занятия k каналов";
+    public static final String AVERAGE_COUNT_OCCUP_CHANNELS = "Среднее число занятых каналов";
+    public static final String P_REQUEST_SERVICE = "Вероятность обслуживания заявки";
+    public static final String P_OCCUP_CHANNEL = "Вероятность занятости канала";
+    public static final String P_FULL_OCCUP_SYS = "Вероятность полной загрузки СМО";
+    public static final String AVER_OCCUP_CHANNEL_TIME = "Среднее время занятости канала";
+    public static final String AVER_PLAIN_CHANNEL_TIME = "Среднее время простоя канала";
+    public static final String AVER_TIME_FULL_OCCUP_SYS = "Среднее время полной загрузки системы";
+    public static final String AVER_NOT_FULL_OCCUP_SYS = "Среднее время неполной загрузки системы";
+    public static final String AVER_PLAIN_TIME_SYS = "Среднее время простоя СМО";
+    public static final String AVER_TIME_STAY_REQUEST = "Среднее время пребывания заявки в СМО";
 
 }

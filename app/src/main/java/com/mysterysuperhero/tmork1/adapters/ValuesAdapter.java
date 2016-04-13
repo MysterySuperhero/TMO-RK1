@@ -22,11 +22,9 @@ import java.util.ArrayList;
  */
 public class ValuesAdapter extends RecyclerView.Adapter<ValuesAdapter.ValueViewHolder> {
 
-    Context context;
     ArrayList<Value> values;
 
     public ValuesAdapter(Context context) {
-        this.context = context;
 
         int i = 0;
         values = new ArrayList<>();
