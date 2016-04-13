@@ -49,6 +49,14 @@
             android:visibility="gone"
             android:hint="@string/mu"/>
 
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Далее"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="end"
+            android:background="@color/colorPrimary"/>
 
     </LinearLayout>
 

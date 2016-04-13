@@ -4,26 +4,24 @@ package com.mysterysuperhero.tmork1.fragments;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mysterysuperhero.tmork1.MainActivity;
 import com.mysterysuperhero.tmork1.R;
-import com.mysterysuperhero.tmork1.adapters.ValuesAdapter;
+import com.mysterysuperhero.tmork1.utils.NotAllFieldsAreFilled;
 import com.mysterysuperhero.tmork1.utils.Value;
 import com.mysterysuperhero.tmork1.utils.ValuesEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
@@ -32,12 +30,15 @@ import java.util.HashSet;
 public class InputParamsFragment extends Fragment {
 
     private HashSet<String> reqs;
+
     private EditText nEditTextView;
     private EditText kEditTextView;
     private EditText alphaEditTextView;
     private EditText muEditTextView;
     private EditText lambdaEditTextView;
+    private ArrayList<EditText> visibleEdits = new ArrayList<>();
 
+    private Button nextButton;
 
     public InputParamsFragment() {
         // Required empty public constructor
@@ -73,28 +74,57 @@ public class InputParamsFragment extends Fragment {
         alphaEditTextView= (EditText) getView().findViewById(R.id.alpha_param_edit);
         lambdaEditTextView = (EditText) getView().findViewById(R.id.lambda_param_edit);
         muEditTextView = (EditText) getView().findViewById(R.id.mu_param_edit);
+
+        nextButton = (Button) getView().findViewById(R.id.next_button);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    for (EditText edit : visibleEdits) {
+                        if (edit.getText().toString().isEmpty()) {
+                            throw new NotAllFieldsAreFilled("Введите все параметры!");
+                        }
+                    }
+                } catch (NotAllFieldsAreFilled notAllFieldsAreFilled) {
+                    Toast.makeText(getActivity(), notAllFieldsAreFilled.getMessage(), Toast.LENGTH_LONG).show();
+                    notAllFieldsAreFilled.printStackTrace();
+                    return;
+                }
+
+
+                ((MainActivity) getActivity()).switchFragmetns("Results");
+            }
+        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
+        visibleEdits.clear();
+
         for (String requirement : reqs) {
             switch (requirement) {
                 case Value.N:
                     nEditTextView.setVisibility(View.VISIBLE);
+                    visibleEdits.add(nEditTextView);
                     break;
                 case Value.K:
                     kEditTextView.setVisibility(View.VISIBLE);
+                    visibleEdits.add(kEditTextView);
                     break;
                 case Value.ALPHA:
                     alphaEditTextView.findViewById(R.id.alpha_param_edit).setVisibility(View.VISIBLE);
+                    visibleEdits.add(alphaEditTextView);
                     break;
                 case Value.LAMBDA:
                     lambdaEditTextView.findViewById(R.id.lambda_param_edit).setVisibility(View.VISIBLE);
+                    visibleEdits.add(lambdaEditTextView);
                     break;
                 case Value.MU:
                     muEditTextView.findViewById(R.id.mu_param_edit).setVisibility(View.VISIBLE);
+                    visibleEdits.add(muEditTextView);
                     break;
             }
         }
