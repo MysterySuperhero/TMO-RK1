@@ -27,7 +27,7 @@ public class Functions {
     }
 
     public static double PKOccupChannels(long k, long n, double alpha) {
-        return PKAlpha(k, alpha) / PKAlpha(n, alpha);
+        return PKAlpha(k, alpha) / RNAlpha(n, alpha);
     }
 
     public static double AverageCountOccupChannels(long n, double alpha) {

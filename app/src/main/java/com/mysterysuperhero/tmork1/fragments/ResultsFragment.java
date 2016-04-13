@@ -7,14 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.mysterysuperhero.tmork1.R;
 import com.mysterysuperhero.tmork1.adapters.ResultsAdapter;
-import com.mysterysuperhero.tmork1.adapters.ValuesAdapter;
 import com.mysterysuperhero.tmork1.utils.Functions;
 import com.mysterysuperhero.tmork1.utils.InputEvent;
 import com.mysterysuperhero.tmork1.utils.Value;
@@ -25,9 +23,6 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 
 public class ResultsFragment extends Fragment {
 
