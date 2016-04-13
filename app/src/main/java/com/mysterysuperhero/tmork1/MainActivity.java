@@ -12,13 +12,18 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.mysterysuperhero.tmork1.fragments.InputParamsFragment;
 import com.mysterysuperhero.tmork1.fragments.ValuesFragment;
+import com.mysterysuperhero.tmork1.utils.ValuesEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     FragmentTransaction transaction;
     Fragment valuesFragment;
+    Fragment inputParamsFragment;
 
 
     @Override
@@ -36,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragmentContainer, valuesFragment);
         transaction.commit();
-
+        inputParamsFragment = new InputParamsFragment();
+        EventBus.getDefault().register(inputParamsFragment);
     }
 
     @Override
@@ -71,10 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 break;
             case "InputParams":
-//                if (taskFragment == null)
-//                    taskFragment = new TaskFragment();
-//                transaction.replace(R.id.fragmentContainer, taskFragment);
-//                transaction.addToBackStack(null);
+                if (inputParamsFragment== null)
+                    inputParamsFragment = new InputParamsFragment();
+                transaction.replace(R.id.fragmentContainer, inputParamsFragment);
+                transaction.addToBackStack(null);
+                EventBus.getDefault().post(new ValuesEvent(((ValuesFragment) valuesFragment).getData()));
                 break;
             case "Results":
 //                transaction.replace(R.id.fragmentContainer, myFriendsFragment);

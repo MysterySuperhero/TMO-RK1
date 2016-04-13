@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -60,7 +61,9 @@ public class ValuesAdapter extends RecyclerView.Adapter<ValuesAdapter.ValueViewH
         return values.size();
     }
 
-
+    public ArrayList<Value> getValues() {
+        return values;
+    }
 
     public class ValueViewHolder extends RecyclerView.ViewHolder {
 

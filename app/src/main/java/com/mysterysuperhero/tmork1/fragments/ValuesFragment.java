@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import com.mysterysuperhero.tmork1.MainActivity;
 import com.mysterysuperhero.tmork1.R;
 import com.mysterysuperhero.tmork1.adapters.ValuesAdapter;
+import com.mysterysuperhero.tmork1.utils.Value;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +30,7 @@ public class ValuesFragment extends Fragment {
 
     private RecyclerView valuesView;
 
+    private ArrayList<Value> data;
 
     public ValuesFragment() {
         // Required empty public constructor
@@ -34,6 +40,7 @@ public class ValuesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_values, container, false);
     }
@@ -50,7 +57,7 @@ public class ValuesFragment extends Fragment {
         assert valuesView != null;
         valuesView.setLayoutManager(layoutManager);
 
-        ValuesAdapter adapter = new ValuesAdapter(getActivity());
+        final ValuesAdapter adapter = new ValuesAdapter(getActivity());
 
         //Apply this adapter to the RecyclerView
         valuesView.setAdapter(adapter);
@@ -60,9 +67,14 @@ public class ValuesFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                data = adapter.getValues();
                 ((MainActivity) getActivity()).switchFragmetns("InputParams");
             }
         });
+    }
+
+    public ArrayList<Value> getData() {
+        return data;
     }
 
 
