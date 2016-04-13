@@ -16,8 +16,6 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/state_checkbox"
             android:layout_alignParentLeft="true"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="asasasasasasasasassasasasasasasasasasaasasas"
             android:textSize="18sp"/>
 
@@ -25,7 +23,8 @@
             android:id="@+id/state_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
     </RelativeLayout>
 
     <View

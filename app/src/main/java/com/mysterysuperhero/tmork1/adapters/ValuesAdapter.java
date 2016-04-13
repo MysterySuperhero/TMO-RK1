@@ -28,19 +28,21 @@ public class ValuesAdapter extends RecyclerView.Adapter<ValuesAdapter.ValueViewH
     public ValuesAdapter(Context context) {
         this.context = context;
 
+        int i = 0;
         values = new ArrayList<>();
-        values.add(new Value("P(n, α)", true, 0));
-        values.add(new Value("R(n, α)", true, 1));
-        values.add(new Value("Вероятность обслуживания заявки", false, 2));
-        values.add(new Value("Вероятность занятости канала", false, 3));
-        values.add(new Value("Вероятность полной загрузки СМО", false, 4));
-        values.add(new Value("Среднее время занятости канала", false, 5));
-        values.add(new Value("Среднее время простоя канала", false, 6));
-        values.add(new Value("Среднее время полной загрузки системы", false, 7));
-        values.add(new Value("Среднее время неполной загрузки системы", false, 8));
-        values.add(new Value("Среднее время простоя СМО", false, 9));
-        values.add(new Value("Среднее время пребывания заявки в СМО", false, 10));
-        values.add(new Value("Среднее время простоя канала", false, 11));
+        values.add(new Value(Value.P, false, i++));
+        values.add(new Value(Value.R, false, i++));
+        values.add(new Value(Value.P_K_CHANNELS_OCCUP, false, i++));
+        values.add(new Value(Value.AVERAGE_COUNT_OCCUP_CHANNELS, false, i++));
+        values.add(new Value(Value.P_REQUEST_SERVICE, false, i++));
+        values.add(new Value(Value.P_OCCUP_CHANNEL, false, i++));
+        values.add(new Value(Value.P_FULL_OCCUP_SYS, false, i++));
+        values.add(new Value(Value.AVER_OCCUP_CHANNEL_TIME, false, i++));
+        values.add(new Value(Value.AVER_PLAIN_CHANNEL_TIME, false, i++));
+        values.add(new Value(Value.AVER_TIME_FULL_OCCUP_SYS, false, i++));
+        values.add(new Value(Value.AVER_NOT_FULL_OCCUP_SYS, false, i++));
+        values.add(new Value(Value.AVER_PLAIN_TIME_SYS, false, i++));
+        values.add(new Value(Value.AVER_TIME_STAY_REQUEST, false, i));
     }
 
     @Override

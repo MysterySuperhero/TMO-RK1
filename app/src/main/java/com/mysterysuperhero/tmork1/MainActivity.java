@@ -40,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         valuesFragment = new ValuesFragment();
         transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.fragmentContainer, valuesFragment);
+        transaction.addToBackStack(null);
         transaction.commit();
         inputParamsFragment = new InputParamsFragment();
-        EventBus.getDefault().register(inputParamsFragment);
     }
 
     @Override
@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0 ){
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     public void switchFragmetns(String fragmentName) {
         transaction = fragmentManager.beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     inputParamsFragment = new InputParamsFragment();
                 transaction.replace(R.id.fragmentContainer, inputParamsFragment);
                 transaction.addToBackStack(null);
+                EventBus.getDefault().register(inputParamsFragment);
                 EventBus.getDefault().post(new ValuesEvent(((ValuesFragment) valuesFragment).getData()));
                 break;
             case "Results":

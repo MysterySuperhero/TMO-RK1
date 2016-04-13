@@ -4,66 +4,53 @@
              android:layout_height="match_parent"
              tools:context="com.mysterysuperhero.tmork1.fragments.InputParamsFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin" >
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <EditText
             android:id="@+id/n_param_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:hint="@string/n"/>
 
-        <!--<EditText-->
-        <!--android:id="@+id/k_param_edit"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/n_param_edit"-->
-        <!--android:hint="@string/k"/>-->
-
-
-        <LinearLayout
-            android:id="@+id/params_layout"
+        <EditText
+            android:id="@+id/k_param_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/n_param_edit">
-
-            <EditText
-                android:id="@+id/alpha_param_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="@string/alpha"/>
-
-            <EditText
-                android:id="@+id/lambda_param_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:hint="@string/lambda"/>
-
-            <EditText
-                android:id="@+id/mu_param_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:visibility="gone"
-                android:hint="@string/mu"/>
-
-            <CheckBox
-                android:id="@+id/mode_checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
+            android:visibility="gone"
+            android:hint="@string/k"/>
 
 
-    </RelativeLayout>
+        <EditText
+            android:id="@+id/alpha_param_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:hint="@string/alpha"/>
+
+        <EditText
+            android:id="@+id/lambda_param_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:hint="@string/lambda"/>
+
+        <EditText
+            android:id="@+id/mu_param_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:hint="@string/mu"/>
+
+
+    </LinearLayout>
+
 
 </FrameLayout>
